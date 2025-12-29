@@ -1,0 +1,352 @@
+# Gen AI
+
+### Intro to Generative AI
+
+- Gen AI
+    - AI systems that can produce high quality content - text, image, and audio
+    - Gen AI as developer tool
+- How Gen AI works?
+    - AI is a set of tools
+        - Supervised learning (labeling things)
+        - Generative AI
+        - Unsupervised learning
+        - Reinforcement learning
+    - Supervised learning
+        - Input ⇒ Output | Application
+            - Email ⇒ Spam? (0/1) | Spam filtering
+            - Ad, user info ⇒ Click? (0/1) | Online advertising
+            - Image, radar info ⇒ Position of other cars | Self-driving car
+            - X-ray image ⇒ Diagnosis | Healthcare
+            - Image of phone ⇒ Defect? (0/1) | Visual inspection
+            - Audio recording ⇒ Text transcription | Speech recognition
+            - Restaurant reviews ⇒ Sentiment (pos/neg) | Reputation monitoring
+        - Large scale supervised learning
+            - Large AI models improve the accuracy significantly
+    - Text generation process by LLMs
+        - Prompt ⇒ AI output
+    - How LLM works
+        - **LLMs are built by using supervised learning to repeatedly predict the next word**
+        - When we train large AI system on a lot of data, we got LLMs
+- LLM as a thought partner
+    - A new way to find information
+    - Writing partner
+- AI as general purpose tech
+    - Similar to electricity, AI is useful for many tasks
+    - Examples of tasks LLMs can carry out
+        - Writing
+        - Reading
+        - Chatting
+    - Web-based vs. Application use of LLMs
+        - Web-based interface applications
+            - ChatGPT, Gemini, etc…
+        - Software-based application
+            - Email routing, document search
+
+### Gen AI Applications
+
+- Writing
+    - Brainstorming product names
+    - Developing sales strategy
+    - Writing a press release
+    - Translation
+- Reading
+    - Proofreading
+    - Summarizing an article
+    - Summarizing call center conversations
+    - Customer email analysis
+    - Reputation monitoring
+- Chatting
+    - Customer service chatbots
+    - Specialized chatbots
+        - Trip planner
+        - Career coach
+        - Recipe ideas
+    - IT service chatbots
+    - The rise of chatbots in customer service
+        - Humans only
+        - Bots support Humans (human-in-the-loop)
+        - Bot triages for humans
+    - Advice for deploying chatbots (design pattern)
+        - Start with internal-facing chatbots
+        - Deploy with human-in-the-loop to check for mistakes
+        - Only after deemed safe, allow bot to communicate directly with customers
+- What LLMs can and cannot do
+    - Knowledge cutoffs
+        - LLM’s knowledge of the world is frozen at the time of its training
+    - Hallucination
+        - Making things up
+    - Input & output length is limited
+        - Accept up to only a few thousand words
+            - Total amount of context we can give is limited
+            - Some LLMs have longer context limits - 100,000 words
+            - LLM’s context length is the limit of total input + output size
+    - Gen AI works best with unstructured data
+        - text, images, audio, video, etc…
+    - Bias & Toxicity
+        - LLM can reflect biases that exist in the text it learned from
+        - LLM can output toxic or harmful speech
+- Tips for Prompting
+    - Be detailed and specific
+        - Give sufficient context
+        - Describe the desired task in detail
+    - Guide the model to think through its answer
+        - Give step by step instruction
+    - Experiment & iterate
+        - Better to develop process for improving prompts through iteration
+            - Idea ⇒ prompt ⇒ LLM response ⇒ Idea
+    - Tip
+        - Don’t overthink the initial prompt, just try something quickly and improve it over time
+- Image Generation
+    - Diffusion model
+        - Image training
+            - Add noises to the image
+            - Using supervised learning, diffusion model input noisy image ⇒ output slightly noisy image
+        - Image generation
+            - Start with pure noise image-1
+            - Using supervised learning, input the image-1 and output the image-2
+            - Input the image-2 and output the image-3
+            - Input the image-3 and output the final image
+            - Typically ~100 steps for diffusion model
+        - Adding text in the image training and generation
+            - Noisy image and caption
+                - For eg: banana image + green banana
+
+### Gen AI Project: Software Applications
+
+- Using Gen AI in Software Applications
+    - Supervised learning for reputation monitoring
+        - Get labeled data ⇒ Train AI model ⇒ Deploy model
+    - Prompt-based development for reputation monitoring
+        - Prompt ⇒ Call LLM ⇒ Response
+        - Less code compared to supervised learning
+    - Workflow using Gen AI
+        - Supervised learning
+            - Get labeled data → 1 month
+            - Train AI model on data → 3 months
+            - Deploy model → 3 months
+        - Prompt-based AI
+            - Specify prompt → minutes/hours
+            - Deploy model → hours/days
+- Lifecycle of Gen AI Project
+    - Lifecycle
+        - Scope project
+            - Take food order
+        - Build/improve system
+        - Internal evaluation
+            - Let team order…
+        - Deploy & monitor
+            - Let customers order, monitor LLM responses
+    - Tools to improve performance
+        - Building Gen AI is highly empirical - we repeatedly find & fix mistakes
+            - Prompting
+            - RAG
+                - Give LLM access to external sources
+            - Fine-tune models
+                - Adapt LLM to our task
+            - Pre-train models
+                - Train LLM from scratch
+- Cost Intuition
+    - What is a token?
+        - A word or subpart of a word
+            - Less common word ⇒ consumes more tokens
+    - Estimating cost
+        - output word + prompt words = total words
+        - 33% of total words + total words = total tokens
+        - total tokens * cost per 1,000 tokens = total cost
+
+### Gen AI Projects: Advanced Technologies
+
+- Retrieval Augmented Generation (RAG)
+    - Three steps
+        - Given question, search relevant documents for answer
+        - Incorporate retrieved text into an updated prompt
+        - Generate answer from the new prompt with additional context
+    - Big idea: LLM as reasoning engine instead of knowledge store
+        - LLMs have a lot of general knowledge, but they don’t know everything
+        - By providing relevant context in the prompt, we ask LLM to read a piece of text, then process it to get an answer
+        - We’re using it as a reasoning engine to process information, rather than using it as a source of information
+- Fine-tuning
+    - Pretraining & Fine-tuning
+        - Pretraining
+            - Learns from 100Bs of words
+        - Fine-tuning
+            - Learns from 1000s to 10,000s of words
+    - Why fine-tune?
+        - To carry out a task that isn’t easy to define in a prompt
+            - Summarize in certain style or structure
+            - Mimicking a writing or speaking style
+        - To help LLM gain specific knowledge
+            - Medical notes
+            - Legal documents
+        - To get a smaller model to perform a task
+            - Lower cost/latency to deploy
+                - Large model: 100B+ parameters
+                - Small model: 1B parameters
+            - Can run on mobile/laptop (edge devices)
+- Pretraining LLM
+    - General-purpose LLMs are pre-trained by learning from Internet text
+        - May take $10s of millions, many months, huge amount of data
+    - For building a specific application:
+        - Option of last resort
+        - Could help if have a highly specialized domain
+        - Eg: BloombergGPT
+- Choosing Model
+    - Model size
+        - 1B parameters
+            - Pattern matching & basic knowledge of the world
+            - For restaurant review sentiment
+        - 10B parameters
+            - Greater world knowledge, can follow basic instructions
+            - For food order chatbot
+        - 100B+ parameters
+            - Rich world knowledge, complex reasoning
+            - For brainstorming partner
+    - Closed or Open Source
+        - Closed-source models (via API)
+            - Easy to use in applications
+            - More large/powerful models
+            - Relatively inexpensive
+            - Some risk of vendor lock-in
+        - Open-source models
+            - Full control over model
+            - Can run on your own device
+            - Full control over data privacy/access
+- Instruction Tuning & RLHF
+    - How chat systems learn to follow instructions?
+        - Instruction tuning
+            - Fine-tuning the instruction by providing the examples of the pairs of the questions & answers
+        - Reinforcement learning from human feedback (RLHF)
+            - Helpful, Honest, Harmless
+                - Step-1: Train an answer quality (reward) model
+                - Step-2: Have LLM generate a lot of answers, Further train it to generate more responses that get high scores
+- Tool Use & Agents
+    - Tool use
+        - LLM output can trigger calling a software system to take an action such as placing an food order
+        - Better to add verification to confirm with the user before taking final action
+    - Tools for reasoning
+        - LLMs are not great at precise math
+        - LLMs call an external calculator program to response the correct answer
+    - Tool use is important part of many LLM applications today
+    - Agents
+        - Use LLM to choose and carry out complex sequences of actions
+        - Example
+            - Prompt:
+                - Research my top competitors
+            - LLM:
+                - Search action
+                - Visit website action
+                - Other actions…
+                - Then response to the user
+
+### Gen AI & Business
+
+- Day-to-day Usage of Web-UI LLMs
+    - Writing assistant
+    - Marketer
+    - Recruiter
+    - Programmer
+- Task Analysis of Jobs
+    - Identifying automation opportunities
+        - AI doesn’t automate jobs, it automates tasks
+        - Most jobs involve a collection of many tasks
+    - Augmentation vs. Automation
+        - Augmentation
+            - Help humans with a task
+        - Automation
+            - Automatically perform a task
+        - Business will start with augmentation and gradually move toward automation
+    - Evaluating AI potential
+        - The potential for augmenting/automating a task depends on:
+            - Technical feasibility
+                - Can AI do it?
+                    - Framework
+                        - Can a fresh college graduate following the instructions in a prompt complete a task?
+                        - If unsure, try prompting LLM to see if you can get it to do it
+                        - AI engineer can also help assess if RAG, fine-tuning, or other techniques can help
+            - Business value
+                - How valuable is it for AI to augment or automate the task?
+                    - How much time is spent on this task?
+                    - Does doing this task significantly faster, cheaper or more consistently create substantial value?
+- Additional Job Analysis Examples
+    - Computer programmer
+        - Task | Gen AI potential
+            - Write code | Medium
+            - Write doc | High
+            - Respond to user support requests | Medium
+            - Review others code | Low
+            - Gather requirements | Low
+    - Lawyer
+        - Few impact by Gen AI
+    - Landscaper
+        - Least impact by Gen AI
+- New Workflows & New Opportunities
+    - Surgeon
+        - Without Gen AI tools
+            - Heavy research medical procedure & carry out surgery
+        - With Gen AI tools
+            - Less research medical procedure & carry out surgery
+    - Legal documentation review
+        - Without Gen AI
+            - Gather information, heavy review documents, give client feedback
+        - With Gen AI
+            - Less review documents, the rest the same
+    - Marketing automation
+        - Without Gen AI
+            - Heavy write website copy, heavy push to website
+        - With Gen AI
+            - Less write website copy, less push to website
+    - Analyzing Gen AI potential on customers tasks
+        - Example: Helping customers build website
+- Teams to Build Gen AI Software
+    - Common roles
+        - Software engineer
+            - Ideally someone who has learned basics of LLMs/prompting
+        - ML engineer
+            - Ideally familiar with LLMs/prompting, RAG, fine-tuning
+        - Product manager
+        - Prompt engineer
+    - Getting started with small team
+        - One person team
+        - Two person team
+            - MLE + SE
+- Automation Potential across Sectors
+    - Gen AI will impact higher-paid jobs more
+    - Gen AI could have the most impact on knowledge workers
+
+### Gen AI in Business & Society
+
+- Concerns about AI
+    - Amplifying humanity’s worst impulses
+        - LLMs are trained on text from Internet which reflects human’s best qualities but also its worst
+        - LLMs are becoming less biased through fine-tuning & more advanced techniques such as RLHF
+        - RLHF
+            - Reduce bias
+                - Step-1: Train an answer quality (reward) model
+                - Step-2: Have LLM generate a lot of responses, further train it to generate more responses that get high scores
+    - Job loss
+        - AI won’t replace developers
+        - But developers that use AI will replace developers that don’t
+    - Human extinction
+        - Examples of harm caused by AI
+            - Self-driving car crashes
+            - 2010 stock market flash crash
+            - Unjust sentencing in criminal cases
+        - Extinction arguments are not concrete
+        - If we look at the risks to humanity such as climate change and pandemics, AI will be key part of the solution
+- Artificial General Intelligence (AGI)
+    - AI that can do any intellectual task that a human can
+        - Examples
+            - Learn to drive a car through ~20hr of practice
+            - Complete a PhD thesis after ~5yr of work
+            - Do all the tasks of a computer programmer or any other knowledge worker
+- Responsible AI
+    - Dimensions of responsible AI
+        - Fairness
+        - Transparency
+        - Privacy
+        - Security
+        - Ethical use
+    - Tips
+        - Build a culture that encourages discussion and debate on ethical issues
+        - Brainstorm how things can go wrong
+        - Work with a diverse team and include perspectives from all stakeholders
